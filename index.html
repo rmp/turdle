@@ -123,9 +123,8 @@
 	     // fetch and process the word list
 	     words = await
 	     fetch('words')
-		 .then(res => res.body )
-		 .then(stream => stream.getReader().read())
-		 .then(obj => { return new TextDecoder().decode(obj.value).split("\n") })
+		 .then(res => res.text() )
+		 .then(text => text.split("\n"))
 	     
 	     // pick the word of the day at random. Could be % date if everyone wants the same one
 	     wotd = words[Math.floor(Math.random()*words.length)];
